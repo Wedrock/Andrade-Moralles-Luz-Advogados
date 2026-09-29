@@ -118,7 +118,7 @@ cartoesOriginais.forEach((cartao) => {
   const copia = cartao.cloneNode(true);
 
   copia.setAttribute("aria-hidden", "true");
-  copia.setAttribute("inert", "");
+
   copia.classList.remove("revelar", "visivel");
   copia.style.removeProperty("--atraso");
 
