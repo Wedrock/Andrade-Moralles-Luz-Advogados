@@ -45,19 +45,19 @@ function main() {
     const rn_html = `${head}
 <body>
     ${header}
-    <main class="consulta-page" style="font-family: 'Plus Jakarta Sans', sans-serif;">
-        <section class="hero-consulta" style="background-image: url('justica.png'); background-size: cover; background-position: center; padding: 6rem 0; color: white; text-align: center; position: relative;">
-            <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.7);"></div>
-            <div class="conteudo" style="position: relative; z-index: 1;">
-                <h1 style="font-size: 2.5rem; margin-bottom: 1rem; font-family: 'Playfair Display', serif;">Consulta Processual – Rio Grande do Norte</h1>
-                <p style="font-size: 0.85rem; color: #ddd; font-weight: 500;">
+    <main class="consulta-page" style="font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0b0d12;">
+        <section class="destaque" style="padding: clamp(3.25rem, 6vh, 5rem) 0 clamp(2.5rem, 5vh, 4rem);">
+            <div class="destaque__imagem" aria-hidden="true"></div>
+            <div class="conteudo" style="text-align: center;">
+                <h1 class="destaque__titulo" style="margin: 0 auto 1rem; font-size: 2.5rem;">Consulta Processual – Rio Grande do Norte</h1>
+                <p style="font-size: 0.85rem; color: #cbd5e1; font-weight: 500;">
                     <a href="index.html" style="color: white; text-decoration: none;">Início</a> &gt; 
                     <span style="color: #d4a373;">Consulta Processual – Rio Grande do Norte</span>
                 </p>
             </div>
         </section>
         
-        <section style="padding: 5rem 0;">
+        <section style="padding: 5rem 0; background-color: #fff;">
             <div class="conteudo" style="max-width: 1000px; margin: 0 auto; padding: 0 1.5rem;">
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
                     
@@ -96,12 +96,12 @@ function main() {
     const rn_federal_html = `${head}
 <body>
     ${header}
-    <main class="consulta-page" style="font-family: 'Plus Jakarta Sans', sans-serif;">
-        <section class="hero-consulta" style="background-image: url('justica.png'); background-size: cover; background-position: center; padding: 6rem 0; color: white; text-align: center; position: relative;">
-            <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.7);"></div>
-            <div class="conteudo" style="position: relative; z-index: 1;">
-                <h1 style="font-size: 2.5rem; margin-bottom: 1rem; font-family: 'Playfair Display', serif;">Justiça Federal – Rio Grande do Norte</h1>
-                <p style="font-size: 0.85rem; color: #ddd; font-weight: 500;">
+    <main class="consulta-page" style="font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0b0d12;">
+        <section class="destaque" style="padding: clamp(3.25rem, 6vh, 5rem) 0 clamp(2.5rem, 5vh, 4rem);">
+            <div class="destaque__imagem" aria-hidden="true"></div>
+            <div class="conteudo" style="text-align: center;">
+                <h1 class="destaque__titulo" style="margin: 0 auto 1rem; font-size: 2.5rem;">Justiça Federal – Rio Grande do Norte</h1>
+                <p style="font-size: 0.85rem; color: #cbd5e1; font-weight: 500;">
                     <a href="index.html" style="color: white; text-decoration: none;">Início</a> &gt; 
                     <a href="consulta-rn.html" style="color: white; text-decoration: none;">Consulta Processual – Rio Grande do Norte</a> &gt; 
                     <span style="color: #d4a373;">Justiça Federal – Rio Grande do Norte</span>
@@ -109,7 +109,7 @@ function main() {
             </div>
         </section>
         
-        <section style="padding: 5rem 0;">
+        <section style="padding: 5rem 0; background-color: #fff;">
             <div class="conteudo" style="max-width: 1000px; margin: 0 auto; padding: 0 1.5rem;">
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
                     
@@ -156,12 +156,12 @@ function main() {
         const pje_html = `${head}
 <body>
     ${header}
-    <main class="consulta-page" style="font-family: 'Plus Jakarta Sans', sans-serif;">
-        <section class="hero-consulta" style="background-image: url('justica.png'); background-size: cover; background-position: center; padding: 4rem 0; color: white; text-align: center; position: relative;">
-            <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.7);"></div>
-            <div class="conteudo" style="position: relative; z-index: 1;">
-                <h1 style="font-size: 2rem; margin-bottom: 1rem; font-family: 'Playfair Display', serif;">${title}</h1>
-                <p style="font-size: 0.85rem; color: #ddd; font-weight: 500;">
+    <main class="consulta-page" style="font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0b0d12;">
+        <section class="destaque" style="padding: clamp(3.25rem, 6vh, 5rem) 0 clamp(2.5rem, 5vh, 4rem);">
+            <div class="destaque__imagem" aria-hidden="true"></div>
+            <div class="conteudo" style="text-align: center;">
+                <h1 class="destaque__titulo" style="margin: 0 auto 1rem; font-size: 2rem;">${title}</h1>
+                <p style="font-size: 0.85rem; color: #cbd5e1; font-weight: 500;">
                     <a href="index.html" style="color: white; text-decoration: none;">Início</a> &gt; 
                     <a href="consulta-rn.html" style="color: white; text-decoration: none;">Consulta Processual – Rio Grande do Norte</a> &gt; 
                     <a href="consulta-rn-federal.html" style="color: white; text-decoration: none;">Justiça Federal</a> &gt;
@@ -189,12 +189,12 @@ function main() {
     const rn_tj_html = `${head}
 <body>
     ${header}
-    <main class="consulta-page" style="font-family: 'Plus Jakarta Sans', sans-serif;">
-        <section class="hero-consulta" style="background-image: url('justica.png'); background-size: cover; background-position: center; padding: 6rem 0; color: white; text-align: center; position: relative;">
-            <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.7);"></div>
-            <div class="conteudo" style="position: relative; z-index: 1;">
-                <h1 style="font-size: 2.5rem; margin-bottom: 1rem; font-family: 'Playfair Display', serif;">Tribunal de Justiça – Rio Grande do Norte</h1>
-                <p style="font-size: 0.85rem; color: #ddd; font-weight: 500;">
+    <main class="consulta-page" style="font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0b0d12;">
+        <section class="destaque" style="padding: clamp(3.25rem, 6vh, 5rem) 0 clamp(2.5rem, 5vh, 4rem);">
+            <div class="destaque__imagem" aria-hidden="true"></div>
+            <div class="conteudo" style="text-align: center;">
+                <h1 class="destaque__titulo" style="margin: 0 auto 1rem; font-size: 2.5rem;">Tribunal de Justiça – Rio Grande do Norte</h1>
+                <p style="font-size: 0.85rem; color: #cbd5e1; font-weight: 500;">
                     <a href="index.html" style="color: white; text-decoration: none;">Início</a> &gt; 
                     <a href="consulta-rn.html" style="color: white; text-decoration: none;">Consulta Processual – Rio Grande do Norte</a> &gt; 
                     <span style="color: #d4a373;">Tribunal de Justiça (TJRN)</span>
@@ -202,7 +202,7 @@ function main() {
             </div>
         </section>
         
-        <section style="padding: 5rem 0;">
+        <section style="padding: 5rem 0; background-color: #fff;">
             <div class="conteudo" style="max-width: 1000px; margin: 0 auto; padding: 0 1.5rem;">
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
                     
@@ -239,12 +239,12 @@ function main() {
     const rn_trt_html = `${head}
 <body>
     ${header}
-    <main class="consulta-page" style="font-family: 'Plus Jakarta Sans', sans-serif;">
-        <section class="hero-consulta" style="background-image: url('justica.png'); background-size: cover; background-position: center; padding: 6rem 0; color: white; text-align: center; position: relative;">
-            <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.7);"></div>
-            <div class="conteudo" style="position: relative; z-index: 1;">
-                <h1 style="font-size: 2.5rem; margin-bottom: 1rem; font-family: 'Playfair Display', serif;">Justiça do Trabalho (TRT 21) – Rio Grande do Norte</h1>
-                <p style="font-size: 0.85rem; color: #ddd; font-weight: 500;">
+    <main class="consulta-page" style="font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0b0d12;">
+        <section class="destaque" style="padding: clamp(3.25rem, 6vh, 5rem) 0 clamp(2.5rem, 5vh, 4rem);">
+            <div class="destaque__imagem" aria-hidden="true"></div>
+            <div class="conteudo" style="text-align: center;">
+                <h1 class="destaque__titulo" style="margin: 0 auto 1rem; font-size: 2.5rem;">Justiça do Trabalho (TRT 21) – Rio Grande do Norte</h1>
+                <p style="font-size: 0.85rem; color: #cbd5e1; font-weight: 500;">
                     <a href="index.html" style="color: white; text-decoration: none;">Início</a> &gt; 
                     <a href="consulta-rn.html" style="color: white; text-decoration: none;">Consulta Processual – Rio Grande do Norte</a> &gt; 
                     <span style="color: #d4a373;">Justiça do Trabalho (TRT 21)</span>
@@ -252,7 +252,7 @@ function main() {
             </div>
         </section>
         
-        <section style="padding: 5rem 0;">
+        <section style="padding: 5rem 0; background-color: #fff;">
             <div class="conteudo" style="max-width: 1000px; margin: 0 auto; padding: 0 1.5rem;">
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
                     
@@ -275,12 +275,12 @@ function main() {
     const rn_tre_html = `${head}
 <body>
     ${header}
-    <main class="consulta-page" style="font-family: 'Plus Jakarta Sans', sans-serif;">
-        <section class="hero-consulta" style="background-image: url('justica.png'); background-size: cover; background-position: center; padding: 6rem 0; color: white; text-align: center; position: relative;">
-            <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.7);"></div>
-            <div class="conteudo" style="position: relative; z-index: 1;">
-                <h1 style="font-size: 2.5rem; margin-bottom: 1rem; font-family: 'Playfair Display', serif;">Tribunal Regional Eleitoral – RN</h1>
-                <p style="font-size: 0.85rem; color: #ddd; font-weight: 500;">
+    <main class="consulta-page" style="font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0b0d12;">
+        <section class="destaque" style="padding: clamp(3.25rem, 6vh, 5rem) 0 clamp(2.5rem, 5vh, 4rem);">
+            <div class="destaque__imagem" aria-hidden="true"></div>
+            <div class="conteudo" style="text-align: center;">
+                <h1 class="destaque__titulo" style="margin: 0 auto 1rem; font-size: 2.5rem;">Tribunal Regional Eleitoral – RN</h1>
+                <p style="font-size: 0.85rem; color: #cbd5e1; font-weight: 500;">
                     <a href="index.html" style="color: white; text-decoration: none;">Início</a> &gt; 
                     <a href="consulta-rn.html" style="color: white; text-decoration: none;">Consulta Processual – Rio Grande do Norte</a> &gt; 
                     <span style="color: #d4a373;">TRE-RN</span>
@@ -288,7 +288,7 @@ function main() {
             </div>
         </section>
         
-        <section style="padding: 5rem 0;">
+        <section style="padding: 5rem 0; background-color: #fff;">
             <div class="conteudo" style="max-width: 1000px; margin: 0 auto; padding: 0 1.5rem;">
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
                     
