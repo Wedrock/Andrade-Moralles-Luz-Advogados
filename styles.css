@@ -1076,7 +1076,7 @@ em {
   justify-content: space-between;
   gap: 1rem;
   padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+  padding-bottom: calc(2rem + env(safe-area-inset-bottom));
   font-size: 0.65rem;
   color: #64748b;
 }

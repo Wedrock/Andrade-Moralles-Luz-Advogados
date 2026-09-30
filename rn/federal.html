@@ -18,13 +18,13 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
     <header class="cabecalho">
         <div class="cabecalho__container">
-            <a class="cabecalho__marca" href="index.html#inicio">
-                <img src="logo.png"
+            <a class="cabecalho__marca" href="../index.html#inicio">
+                <img src="../logo.png"
                     onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/aida/AEtjO1V8GD4UzfSyc3n4T68cwGXsaEdB3_Vn20eM3kS3p-lPoRjcmCIMy-2ZKLR4kDkzDy7nO7OUR2rzZrYzOIaCIVcAgPoYs4pZplrCReA_rsXHBOLjnz2sGNA4V3N-ih2X0yfQrX5u9E4c1QmYlQdpKOoIVhu01G5VwjRZOiTLzf6GrVXmE2lWopFNmAewijg4Wf8fpeHbkmUcyJU8vKZhzICbpw27TATMMWFD5sx2MpSkFNY639d8VqNx9Q'"
                     alt="Andrade, Moralles & Luz Advogados">
                 <span>Andrade, Moralles & Luz</span>
@@ -36,13 +36,13 @@
                 </button>
 
                 <nav class="cabecalho__navegacao">
-                    <a href="index.html#inicio" class="cabecalho__link cabecalho__link--ativo">Início</a>
-                    <a href="index.html#escritorio" class="cabecalho__link">O escritório</a>
-                    <a href="index.html#areas" class="cabecalho__link">Áreas de atuação</a>
-                    <a href="index.html#socios" class="cabecalho__link">Portfólio</a>
-                    <a href="index.html#artigos" class="cabecalho__link">Artigos</a>
-                    <a href="index.html#contato" class="cabecalho__link">Contato</a>
-                    <a href="consulta.html" class="cabecalho__cta">Consulta processual</a>
+                    <a href="../index.html#inicio" class="cabecalho__link cabecalho__link--ativo">Início</a>
+                    <a href="../index.html#escritorio" class="cabecalho__link">O escritório</a>
+                    <a href="../index.html#areas" class="cabecalho__link">Áreas de atuação</a>
+                    <a href="../index.html#socios" class="cabecalho__link">Portfólio</a>
+                    <a href="../index.html#artigos" class="cabecalho__link">Artigos</a>
+                    <a href="../index.html#contato" class="cabecalho__link">Contato</a>
+                    <a href="../consulta.html" class="cabecalho__cta">Consulta processual</a>
                 </nav>
             </div>
 
@@ -75,21 +75,50 @@
     </header>
     <main class="consulta-page" style="font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0b0d12;">
         <section class="destaque" style="padding: clamp(3.25rem, 6vh, 5rem) 0 clamp(2.5rem, 5vh, 4rem);">
-            <div class="destaque__imagem" aria-hidden="true"></div>
+            <div class="destaque__imagem" aria-hidden="true" style="background-image: linear-gradient(90deg, #0b0d12 28%, rgba(11, 13, 18, 0.88) 50%, rgba(11, 13, 18, 0.38) 72%, rgba(11, 13, 18, 0.78) 100%), linear-gradient(180deg, rgba(11, 13, 18, 0.75) 0%, transparent 18%, transparent 78%, #0b0d12 100%), url('../justica.png');"></div>
             <div class="conteudo" style="text-align: center;">
-                <h1 class="destaque__titulo" style="margin: 0 auto 1rem; font-size: 2rem;">Pje Turma Recursal</h1>
+                <h1 class="destaque__titulo" style="margin: 0 auto 1rem; font-size: 2.5rem;">Justiça Federal – Rio Grande do Norte</h1>
                 <p style="font-size: 0.85rem; color: #cbd5e1; font-weight: 500;">
-                    <a href="index.html" style="color: white; text-decoration: none;">Início</a> &gt; 
-                    <a href="consulta-rn.html" style="color: white; text-decoration: none;">Consulta Processual – Rio Grande do Norte</a> &gt; 
-                    <a href="consulta-rn-federal.html" style="color: white; text-decoration: none;">Justiça Federal</a> &gt;
-                    <span style="color: #d4a373;">Pje Turma Recursal</span>
+                    <a href="../index.html" style="color: white; text-decoration: none;">Início</a> &gt; 
+                    <a href="index.html" style="color: white; text-decoration: none;">Consulta Processual – Rio Grande do Norte</a> &gt; 
+                    <span style="color: #d4a373;">Justiça Federal – Rio Grande do Norte</span>
                 </p>
             </div>
         </section>
         
-        <section style="padding: 2rem 0; min-height: 800px; background-color: #f9f9f9;">
-            <div class="conteudo" style="max-width: 1200px; margin: 0 auto;">
-                <iframe src="https://pje.jfrn.jus.br/pje/ConsultaPublica/listView.seam" style="width: 100%; height: 800px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); background: white;"></iframe>
+        <section style="padding: 5rem 0; background-color: #fff;">
+            <div class="conteudo" style="max-width: 1000px; margin: 0 auto; padding: 0 1.5rem;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
+                    
+                    <a href="https://juizado.jfrn.jus.br/cretainternetrn/consulta/processo/pesquisar2.wsp" target="_blank" style="display: flex; align-items: center; gap: 1rem; background-color: #1a1a1a; color: white; padding: 2rem 1.5rem; text-decoration: none; border-radius: 4px; transition: background-color 0.2s;">
+                        <span style="background: linear-gradient(135deg, #d4a373, #a0744b); padding: 0.5rem; border-radius: 4px; display: inline-flex; justify-content: center; align-items: center;">
+                            <span class="material-symbols-outlined" style="font-size: 1.2rem; color: white;">search</span>
+                        </span>
+                        <h3 style="font-size: 1.1rem; font-weight: 600; margin: 0;">Juizado (Creta)</h3>
+                    </a>
+
+                    <a href="federal-pje.html" style="display: flex; align-items: center; gap: 1rem; background-color: #1a1a1a; color: white; padding: 2rem 1.5rem; text-decoration: none; border-radius: 4px; transition: background-color 0.2s;">
+                        <span style="background: linear-gradient(135deg, #d4a373, #a0744b); padding: 0.5rem; border-radius: 4px; display: inline-flex; justify-content: center; align-items: center;">
+                            <span class="material-symbols-outlined" style="font-size: 1.2rem; color: white;">search</span>
+                        </span>
+                        <h3 style="font-size: 1.1rem; font-weight: 600; margin: 0;">PJe</h3>
+                    </a>
+
+                    <a href="federal-pje-juizado.html" style="display: flex; align-items: center; gap: 1rem; background-color: #1a1a1a; color: white; padding: 2rem 1.5rem; text-decoration: none; border-radius: 4px; transition: background-color 0.2s;">
+                        <span style="background: linear-gradient(135deg, #d4a373, #a0744b); padding: 0.5rem; border-radius: 4px; display: inline-flex; justify-content: center; align-items: center;">
+                            <span class="material-symbols-outlined" style="font-size: 1.2rem; color: white;">search</span>
+                        </span>
+                        <h3 style="font-size: 1.1rem; font-weight: 600; margin: 0;">PJe Juizado Especial</h3>
+                    </a>
+
+                    <a href="federal-pje-turma.html" style="display: flex; align-items: center; gap: 1rem; background-color: #1a1a1a; color: white; padding: 2rem 1.5rem; text-decoration: none; border-radius: 4px; transition: background-color 0.2s;">
+                        <span style="background: linear-gradient(135deg, #d4a373, #a0744b); padding: 0.5rem; border-radius: 4px; display: inline-flex; justify-content: center; align-items: center;">
+                            <span class="material-symbols-outlined" style="font-size: 1.2rem; color: white;">search</span>
+                        </span>
+                        <h3 style="font-size: 1.1rem; font-weight: 600; margin: 0;">Pje Turma Recursal</h3>
+                    </a>
+
+                </div>
             </div>
         </section>
     </main>
@@ -111,12 +140,12 @@
 
             <div>
                 <h4>Navegação</h4>
-                <a href="index.html#inicio">Início</a>
-                <a href="index.html#escritorio">O escritório</a>
-                <a href="index.html#areas">Áreas de atuação</a>
-                <a href="index.html#socios">Sócios</a>
-                <a href="index.html#artigos">Artigos</a>
-                <a href="index.html#contato">Contato</a>
+                <a href="../index.html#inicio">Início</a>
+                <a href="../index.html#escritorio">O escritório</a>
+                <a href="../index.html#areas">Áreas de atuação</a>
+                <a href="../index.html#socios">Sócios</a>
+                <a href="../index.html#artigos">Artigos</a>
+                <a href="../index.html#contato">Contato</a>
             </div>
 
             <div>
@@ -154,8 +183,8 @@
 
     </footer>
 
-    <script src="dados.js"></script>
-    <script src="script.js"></script>
+    <script src="../dados.js"></script>
+    <script src="../script.js"></script>
 
 </body>
 
