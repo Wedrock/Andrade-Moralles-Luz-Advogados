@@ -62,6 +62,34 @@ const areasDeAtuacao = [
     titulo: "Direito Criminal",
     texto: "Direito penal econômico, crimes contra o sistema financeiro, ordem tributária, crimes ambientais e atuação nos tribunais superiores.",
     rotulo: "Defesa estratégica"
+  },
+
+  {
+    icone: "military_tech",
+    titulo: "Direito Militar",
+    texto: "Assessoria e defesa de militares em processos administrativos e judiciais, englobando questões disciplinares, promoções e previdência.",
+    rotulo: "Defesa especializada"
+  },
+
+  {
+    icone: "sports_soccer",
+    titulo: "Direito Desportivo",
+    texto: "Assessoria jurídica para atletas, clubes e federações, incluindo contratos de trabalho desportivo, direitos de imagem e justiça desportiva.",
+    rotulo: "Atuação esportiva"
+  },
+
+  {
+    icone: "how_to_vote",
+    titulo: "Advocacia Partidária",
+    texto: "Consultoria para partidos políticos e candidatos, englobando registro de candidaturas, prestação de contas, propaganda eleitoral e contencioso.",
+    rotulo: "Eleitoral e política"
+  },
+
+  {
+    icone: "fact_check",
+    titulo: "Compliance em Empresas",
+    texto: "Implementação de programas de integridade, gestão de riscos, auditorias preventivas e adequação estrutural para mitigação de passivos.",
+    rotulo: "Prevenção e controle"
   }
 ];
 
