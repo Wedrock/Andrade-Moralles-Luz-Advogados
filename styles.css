@@ -1397,3 +1397,21 @@ html.animacoes .revelar.visivel {
     padding: 1.25rem;
   }
 }
+
+/* Animações para cards de consulta e estados */
+.card-tribunal {
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+.card-tribunal:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.12) !important;
+}
+
+.btn-estado {
+  transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease !important;
+}
+.btn-estado:hover {
+  transform: translateY(-4px) scale(1.03) !important;
+  filter: brightness(1.1);
+  box-shadow: 0 8px 20px rgba(212, 163, 115, 0.4);
+}
