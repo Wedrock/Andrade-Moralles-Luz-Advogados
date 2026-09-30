@@ -144,7 +144,7 @@ function main() {
             <div class="conteudo" style="max-width: 1000px; margin: 0 auto; padding: 0 1.5rem;">
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
                     
-                    <a href="https://juizado.jfrn.jus.br/cretainternetrn/consulta/processo/pesquisar2.wsp" target="_blank" style="display: flex; align-items: center; gap: 1rem; background-color: #1a1a1a; color: white; padding: 2rem 1.5rem; text-decoration: none; border-radius: 4px; transition: background-color 0.2s;">
+                    <a href="https://juizado.jfrn.jus.br/cretainternetrn/consulta/processo/pesquisar2.wsp" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 1rem; background-color: #1a1a1a; color: white; padding: 2rem 1.5rem; text-decoration: none; border-radius: 4px; transition: background-color 0.2s;">
                         <span style="background: linear-gradient(135deg, #d4a373, #a0744b); padding: 0.5rem; border-radius: 4px; display: inline-flex; justify-content: center; align-items: center;">
                             <span class="material-symbols-outlined" style="font-size: 1.2rem; color: white;">search</span>
                         </span>
@@ -235,21 +235,21 @@ function main() {
             <div class="conteudo" style="max-width: 1000px; margin: 0 auto; padding: 0 1.5rem;">
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
                     
-                    <a href="https://pje1g.tjrn.jus.br/pje/ConsultaPublica/listView.seam" target="_blank" style="display: flex; align-items: center; gap: 1rem; background-color: #1a1a1a; color: white; padding: 2rem 1.5rem; text-decoration: none; border-radius: 4px; transition: background-color 0.2s;">
+                    <a href="https://pje1g.tjrn.jus.br/pje/ConsultaPublica/listView.seam" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 1rem; background-color: #1a1a1a; color: white; padding: 2rem 1.5rem; text-decoration: none; border-radius: 4px; transition: background-color 0.2s;">
                         <span style="background: linear-gradient(135deg, #d4a373, #a0744b); padding: 0.5rem; border-radius: 4px; display: inline-flex; justify-content: center; align-items: center;">
                             <span class="material-symbols-outlined" style="font-size: 1.2rem; color: white;">search</span>
                         </span>
                         <h3 style="font-size: 1.1rem; font-weight: 600; margin: 0;">PJe (1º Grau)</h3>
                     </a>
 
-                    <a href="https://pje2g.tjrn.jus.br/pje/ConsultaPublica/listView.seam" target="_blank" style="display: flex; align-items: center; gap: 1rem; background-color: #1a1a1a; color: white; padding: 2rem 1.5rem; text-decoration: none; border-radius: 4px; transition: background-color 0.2s;">
+                    <a href="https://pje2g.tjrn.jus.br/pje/ConsultaPublica/listView.seam" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 1rem; background-color: #1a1a1a; color: white; padding: 2rem 1.5rem; text-decoration: none; border-radius: 4px; transition: background-color 0.2s;">
                         <span style="background: linear-gradient(135deg, #d4a373, #a0744b); padding: 0.5rem; border-radius: 4px; display: inline-flex; justify-content: center; align-items: center;">
                             <span class="material-symbols-outlined" style="font-size: 1.2rem; color: white;">search</span>
                         </span>
                         <h3 style="font-size: 1.1rem; font-weight: 600; margin: 0;">PJe (2º Grau)</h3>
                     </a>
                     
-                    <a href="https://esaj.tjrn.jus.br/cpopg/open.do" target="_blank" style="display: flex; align-items: center; gap: 1rem; background-color: #1a1a1a; color: white; padding: 2rem 1.5rem; text-decoration: none; border-radius: 4px; transition: background-color 0.2s;">
+                    <a href="https://esaj.tjrn.jus.br/cpopg/open.do" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 1rem; background-color: #1a1a1a; color: white; padding: 2rem 1.5rem; text-decoration: none; border-radius: 4px; transition: background-color 0.2s;">
                         <span style="background: linear-gradient(135deg, #d4a373, #a0744b); padding: 0.5rem; border-radius: 4px; display: inline-flex; justify-content: center; align-items: center;">
                             <span class="material-symbols-outlined" style="font-size: 1.2rem; color: white;">search</span>
                         </span>
@@ -285,7 +285,7 @@ function main() {
             <div class="conteudo" style="max-width: 1000px; margin: 0 auto; padding: 0 1.5rem;">
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
                     
-                    <a href="https://pje.trt21.jus.br/consultaprocessual/" target="_blank" style="display: flex; align-items: center; gap: 1rem; background-color: #1a1a1a; color: white; padding: 2rem 1.5rem; text-decoration: none; border-radius: 4px; transition: background-color 0.2s;">
+                    <a href="https://pje.trt21.jus.br/consultaprocessual/" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 1rem; background-color: #1a1a1a; color: white; padding: 2rem 1.5rem; text-decoration: none; border-radius: 4px; transition: background-color 0.2s;">
                         <span style="background: linear-gradient(135deg, #d4a373, #a0744b); padding: 0.5rem; border-radius: 4px; display: inline-flex; justify-content: center; align-items: center;">
                             <span class="material-symbols-outlined" style="font-size: 1.2rem; color: white;">search</span>
                         </span>
@@ -321,7 +321,7 @@ function main() {
             <div class="conteudo" style="max-width: 1000px; margin: 0 auto; padding: 0 1.5rem;">
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
                     
-                    <a href="https://consultaunificadapje.tse.jus.br/" target="_blank" style="display: flex; align-items: center; gap: 1rem; background-color: #1a1a1a; color: white; padding: 2rem 1.5rem; text-decoration: none; border-radius: 4px; transition: background-color 0.2s;">
+                    <a href="https://consultaunificadapje.tse.jus.br/" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 1rem; background-color: #1a1a1a; color: white; padding: 2rem 1.5rem; text-decoration: none; border-radius: 4px; transition: background-color 0.2s;">
                         <span style="background: linear-gradient(135deg, #d4a373, #a0744b); padding: 0.5rem; border-radius: 4px; display: inline-flex; justify-content: center; align-items: center;">
                             <span class="material-symbols-outlined" style="font-size: 1.2rem; color: white;">search</span>
                         </span>
