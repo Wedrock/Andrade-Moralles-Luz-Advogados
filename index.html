@@ -26,9 +26,7 @@
     <header class="cabecalho">
         <div class="cabecalho__container">
             <a class="cabecalho__marca" href="#inicio">
-                <img src="logo.png"
-                    onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/aida/AEtjO1V8GD4UzfSyc3n4T68cwGXsaEdB3_Vn20eM3kS3p-lPoRjcmCIMy-2ZKLR4kDkzDy7nO7OUR2rzZrYzOIaCIVcAgPoYs4pZplrCReA_rsXHBOLjnz2sGNA4V3N-ih2X0yfQrX5u9E4c1QmYlQdpKOoIVhu01G5VwjRZOiTLzf6GrVXmE2lWopFNmAewijg4Wf8fpeHbkmUcyJU8vKZhzICbpw27TATMMWFD5sx2MpSkFNY639d8VqNx9Q'"
-                    alt="Andrade, Moralles & Luz Advogados">
+                <img src="logo.png" alt="Andrade, Moralles & Luz Advogados">
                 <span>Andrade, Moralles & Luz</span>
             </a>
 
@@ -41,7 +39,8 @@
                     <a href="#inicio" class="cabecalho__link cabecalho__link--ativo">Início</a>
                     <a href="#escritorio" class="cabecalho__link">O escritório</a>
                     <a href="#areas" class="cabecalho__link">Áreas de atuação</a>
-                    <a href="#socios" class="cabecalho__link">Portfólio</a>
+                    <a href="#socios" class="cabecalho__link">Equipe</a>
+                    <a href="#portfolio" class="cabecalho__link">Portfólio</a>
                     <a href="#artigos" class="cabecalho__link">Artigos</a>
                     <a href="#contato" class="cabecalho__link">Contato</a>
                     <a href="consulta.html" class="cabecalho__cta">Consulta processual</a>
@@ -266,6 +265,30 @@
             </div>
         </section>
 
+        
+        <section class="portfolio" id="portfolio" style="padding: 6rem 0; background-color: var(--branca);">
+            <div class="conteudo">
+                <header class="secao__cabecalho">
+                    <div>
+                        <span class="etiqueta">Portfólio</span>
+                        <h2>
+                            Parceiros que confiam em nosso <span class="ouro">trabalho.</span>
+                        </h2>
+                    </div>
+                    <p>
+                        Marcas e organizações que acreditam na nossa advocacia parceira, estratégica e voltada para resultados eficientes.
+                    </p>
+                </header>
+
+                <div class="portfolio__grade" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; align-items: center; justify-items: center; margin-top: 4rem;">
+                    <div style="background: #f1f5f9; padding: 2rem; border-radius: 8px; width: 100%; height: 200px; display: flex; align-items: center; justify-content: center;"><img src="imagens_portfolio/ABS-Wind-450x450.png" alt="ABS Wind Brasil" style="max-width: 100%; max-height: 150px; object-fit: contain; mix-blend-mode: multiply;"></div>
+                    <div style="background: #f1f5f9; padding: 2rem; border-radius: 8px; width: 100%; height: 200px; display: flex; align-items: center; justify-content: center;"><img src="imagens_portfolio/seedconstrutora-450x450.png" alt="SEED Construtora" style="max-width: 100%; max-height: 150px; object-fit: contain; mix-blend-mode: multiply;"></div>
+                    <div style="background: #f1f5f9; padding: 2rem; border-radius: 8px; width: 100%; height: 200px; display: flex; align-items: center; justify-content: center;"><img src="imagens_portfolio/viva-o-centro.png" alt="Viva o centro" style="max-width: 100%; max-height: 150px; object-fit: contain; mix-blend-mode: multiply;"></div>
+                    <div style="background: #f1f5f9; padding: 2rem; border-radius: 8px; width: 100%; height: 200px; display: flex; align-items: center; justify-content: center;"><img src="imagens_portfolio/BRASLOGER-450x450.jpg" alt="Brasloger" style="max-width: 100%; max-height: 150px; object-fit: contain; mix-blend-mode: multiply;"></div>
+                </div>
+            </div>
+        </section>
+
         <section class="artigos" id="artigos">
             <div class="conteudo">
 
@@ -286,9 +309,34 @@
                     </p>
                 </header>
 
-                <div class="artigos__grade" id="listaArtigos"></div>
+                <div class="artigos__carrossel">
+                    <button class="artigos__controle artigos__controle--anterior" type="button"
+                        aria-label="Ver artigos anteriores" aria-controls="listaArtigos">
+                        <span class="material-symbols-outlined">
+                            chevron_left
+                        </span>
+                    </button>
 
-            </div>
+                    <div class="artigos__janela" role="region" aria-roledescription="carrossel"
+                        aria-label="Artigos do blog" tabindex="0">
+                        <div class="artigos__grade" id="listaArtigos"></div>
+                    </div>
+
+                    <button class="artigos__controle artigos__controle--proximo" type="button"
+                        aria-label="Ver próximos artigos" aria-controls="listaArtigos">
+                        <span class="material-symbols-outlined">
+                            chevron_right
+                        </span>
+                    </button>
+                </div>
+
+            
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="artigos.html" class="botao botao--ouro" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+                        Veja mais artigos <span class="material-symbols-outlined" style="font-size: 1.2rem;">arrow_forward</span>
+                    </a>
+                </div>
+</div>
         </section>
 
         <section class="contato" id="contato">
@@ -416,7 +464,7 @@
         <div class="conteudo rodape__grade">
 
             <div>
-                <img src="https://lh3.googleusercontent.com/aida/AEtjO1V8GD4UzfSyc3n4T68cwGXsaEdB3_Vn20eM3kS3p-lPoRjcmCIMy-2ZKLR4kDkzDy7nO7OUR2rzZrYzOIaCIVcAgPoYs4pZplrCReA_rsXHBOLjnz2sGNA4V3N-ih2X0yfQrX5u9E4c1QmYlQdpKOoIVhu01G5VwjRZOiTLzf6GrVXmE2lWopFNmAewijg4Wf8fpeHbkmUcyJU8vKZhzICbpw27TATMMWFD5sx2MpSkFNY639d8VqNx9Q"
+                <img src="logo.png"
                     alt="Andrade, Moralles & Luz Advogados">
 
                 <p>
@@ -432,7 +480,8 @@
                 <a href="#inicio">Início</a>
                 <a href="#escritorio">O escritório</a>
                 <a href="#areas">Áreas de atuação</a>
-                <a href="#socios">Sócios</a>
+                <a href="#socios">Equipe</a>
+                <a href="#portfolio">Portfólio</a>
                 <a href="#artigos">Artigos</a>
                 <a href="#contato">Contato</a>
             </div>
@@ -456,8 +505,7 @@
                 </span>
 
                 <span>
-                    Telefone: (84) 3025-1835<br>
-                    WhatsApp: (84) 98735-7317
+                    Telefone: (84) 3025-1835
                 </span>
             </div>
 

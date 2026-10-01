@@ -63,17 +63,24 @@ const modelos = {
 
   artigos: (item) => `
     <article class="artigo">
-      <div
+      <a
+        href="${item.link}"
         class="artigo__capa"
-        style="background-image: url('${item.capa}')"
+        style="background-image: url('${item.capa}'); text-decoration: none;"
       >
+        <div class="artigo__overlay">
+          <div class="artigo__plus">+</div>
+        </div>
         <span>Leia no blog</span>
-      </div>
+      </a>
 
       <div class="artigo__corpo">
-        <small>${item.data} • ${item.autor}</small>
-        <h3>${item.titulo}</h3>
-        <a href="#contato">Leia mais →</a>
+        <div class="artigo__meta">
+          <span><span class="material-symbols-outlined">calendar_today</span> ${item.data}</span>
+          <span><span class="material-symbols-outlined">person</span> ${item.autor}</span>
+        </div>
+        <h3><a href="${item.link}" style="color: inherit; text-decoration: none;">${item.titulo}</a></h3>
+        <a class="artigo__btn" href="${item.link}">Leia mais</a>
       </div>
     </article>
   `
@@ -94,8 +101,10 @@ const listas = {
 };
 
 for (const nome in destinos) {
-  document.getElementById(destinos[nome]).innerHTML =
-    listas[nome].map(modelos[nome]).join("");
+  const el = document.getElementById(destinos[nome]);
+  if (el && listas[nome]) {
+    el.innerHTML = listas[nome].map(modelos[nome]).join("");
+  }
 }
 
 const janelaSocios = document.querySelector(".socios__janela");
@@ -112,129 +121,141 @@ const prefereMovimentoReduzido = window.matchMedia(
   "(prefers-reduced-motion: reduce)"
 ).matches;
 
-const cartoesOriginais = Array.from(faixaSocios.children);
+if (janelaSocios && faixaSocios) {
+  const cartoesOriginais = Array.from(faixaSocios.children);
 
-cartoesOriginais.forEach((cartao) => {
-  const copia = cartao.cloneNode(true);
+  cartoesOriginais.forEach((cartao) => {
+    const copia = cartao.cloneNode(true);
 
-  copia.setAttribute("aria-hidden", "true");
+    copia.setAttribute("aria-hidden", "true");
 
-  copia.classList.remove("revelar", "visivel");
-  copia.style.removeProperty("--atraso");
+    copia.classList.remove("revelar", "visivel");
+    copia.style.removeProperty("--atraso");
 
-  faixaSocios.appendChild(copia);
-});
-
-let distanciaCicloSocios = 0;
-
-const medirCicloSocios = () => {
-  const primeiraCopia =
-    faixaSocios.children[cartoesOriginais.length];
-
-  distanciaCicloSocios =
-    primeiraCopia.getBoundingClientRect().left -
-    faixaSocios.firstElementChild.getBoundingClientRect().left;
-
-  if (janelaSocios.scrollLeft >= distanciaCicloSocios) {
-    janelaSocios.scrollLeft %= distanciaCicloSocios;
-  }
-};
-
-medirCicloSocios();
-
-janelaSocios.classList.toggle(
-  "socios__janela--automatico",
-  !prefereMovimentoReduzido
-);
-
-const moverCarrosselSocios = (direcao) => {
-  const primeiroCartao = faixaSocios.querySelector(".socio");
-
-  const intervalo =
-    Number.parseFloat(
-      window.getComputedStyle(faixaSocios).gap
-    ) || 0;
-
-  const movimento =
-    primeiroCartao.getBoundingClientRect().width + intervalo;
-
-  let destino =
-    janelaSocios.scrollLeft + direcao * movimento;
-
-  if (destino < 0) {
-    destino += distanciaCicloSocios;
-  }
-
-  janelaSocios.scrollTo({
-    left: destino,
-    behavior: prefereMovimentoReduzido ? "auto" : "smooth"
+    faixaSocios.appendChild(copia);
   });
-};
 
-let ultimoQuadroSocios = 0;
-let pausaAteSocios = 0;
+  let distanciaCicloSocios = 0;
 
-const pausarCarrosselSocios = () => {
-  pausaAteSocios = performance.now() + 4000;
-};
+  const medirCicloSocios = () => {
+    const primeiraCopia =
+      faixaSocios.children[cartoesOriginais.length];
 
-const animarCarrosselSocios = (tempo) => {
-  if (!ultimoQuadroSocios) {
-    ultimoQuadroSocios = tempo;
-  }
+    if (!primeiraCopia || !faixaSocios.firstElementChild) return;
 
-  const intervalo = Math.min(
-    tempo - ultimoQuadroSocios,
-    40
-  );
-
-  ultimoQuadroSocios = tempo;
-
-  if (
-    !document.hidden &&
-    !carrosselSocios.matches(":hover") &&
-    !carrosselSocios.contains(document.activeElement) &&
-    tempo >= pausaAteSocios
-  ) {
-    janelaSocios.scrollLeft += intervalo * 0.07;
+    distanciaCicloSocios =
+      primeiraCopia.getBoundingClientRect().left -
+      faixaSocios.firstElementChild.getBoundingClientRect().left;
 
     if (janelaSocios.scrollLeft >= distanciaCicloSocios) {
-      janelaSocios.scrollLeft -= distanciaCicloSocios;
+      janelaSocios.scrollLeft %= distanciaCicloSocios;
     }
+  };
+
+  medirCicloSocios();
+
+  janelaSocios.classList.toggle(
+    "socios__janela--automatico",
+    !prefereMovimentoReduzido
+  );
+
+  const moverCarrosselSocios = (direcao) => {
+    const primeiroCartao = faixaSocios.querySelector(".socio");
+    if (!primeiroCartao) return;
+
+    const intervalo =
+      Number.parseFloat(
+        window.getComputedStyle(faixaSocios).gap
+      ) || 0;
+
+    const movimento =
+      primeiroCartao.getBoundingClientRect().width + intervalo;
+
+    let destino =
+      janelaSocios.scrollLeft + direcao * movimento;
+
+    if (destino < 0) {
+      destino += distanciaCicloSocios;
+    }
+
+    janelaSocios.scrollTo({
+      left: destino,
+      behavior: prefereMovimentoReduzido ? "auto" : "smooth"
+    });
+  };
+
+  let ultimoQuadroSocios = 0;
+  let pausaAteSocios = 0;
+
+  const pausarCarrosselSocios = () => {
+    pausaAteSocios = performance.now() + 4000;
+  };
+
+  const animarCarrosselSocios = (tempo) => {
+    if (!ultimoQuadroSocios) {
+      ultimoQuadroSocios = tempo;
+    }
+
+    const intervalo = Math.min(
+      tempo - ultimoQuadroSocios,
+      40
+    );
+
+    ultimoQuadroSocios = tempo;
+
+    if (
+      !document.hidden &&
+      carrosselSocios &&
+      !carrosselSocios.matches(":hover") &&
+      !carrosselSocios.contains(document.activeElement) &&
+      tempo >= pausaAteSocios
+    ) {
+      janelaSocios.scrollLeft += intervalo * 0.07;
+
+      if (janelaSocios.scrollLeft >= distanciaCicloSocios) {
+        janelaSocios.scrollLeft -= distanciaCicloSocios;
+      }
+    }
+
+    window.requestAnimationFrame(animarCarrosselSocios);
+  };
+
+  if (controleAnterior) {
+    controleAnterior.addEventListener("click", () => {
+      moverCarrosselSocios(-1);
+    });
   }
 
-  window.requestAnimationFrame(animarCarrosselSocios);
-};
+  if (controleProximo) {
+    controleProximo.addEventListener("click", () => {
+      moverCarrosselSocios(1);
+    });
+  }
 
-controleAnterior.addEventListener("click", () => {
-  moverCarrosselSocios(-1);
-});
+  if (carrosselSocios) {
+    carrosselSocios.addEventListener(
+      "pointerdown",
+      pausarCarrosselSocios
+    );
+  }
 
-controleProximo.addEventListener("click", () => {
-  moverCarrosselSocios(1);
-});
+  janelaSocios.addEventListener(
+    "wheel",
+    pausarCarrosselSocios,
+    { passive: true }
+  );
 
-carrosselSocios.addEventListener(
-  "pointerdown",
-  pausarCarrosselSocios
-);
+  janelaSocios.addEventListener(
+    "touchstart",
+    pausarCarrosselSocios,
+    { passive: true }
+  );
 
-janelaSocios.addEventListener(
-  "wheel",
-  pausarCarrosselSocios,
-  { passive: true }
-);
+  window.addEventListener("resize", medirCicloSocios);
 
-janelaSocios.addEventListener(
-  "touchstart",
-  pausarCarrosselSocios,
-  { passive: true }
-);
-
-window.addEventListener("resize", medirCicloSocios);
-
-if (!prefereMovimentoReduzido) {
-  window.requestAnimationFrame(animarCarrosselSocios);
+  if (!prefereMovimentoReduzido) {
+    window.requestAnimationFrame(animarCarrosselSocios);
+  }
 }
 
 if ("IntersectionObserver" in window && !prefereMovimentoReduzido) {
@@ -349,23 +370,26 @@ if ("IntersectionObserver" in window && !prefereMovimentoReduzido) {
 
 const cabecalho = document.querySelector(".cabecalho");
 
-cabecalho
-  .querySelector(".cabecalho__botao")
-  .addEventListener("click", () => {
-    cabecalho.classList.toggle("cabecalho--aberto");
-  });
-
-cabecalho
-  .querySelectorAll("nav a")
-  .forEach((link) => {
-    link.addEventListener("click", () => {
-      cabecalho.classList.remove("cabecalho--aberto");
+if (cabecalho) {
+  const botaoMenu = cabecalho.querySelector(".cabecalho__botao");
+  if (botaoMenu) {
+    botaoMenu.addEventListener("click", () => {
+      cabecalho.classList.toggle("cabecalho--aberto");
     });
-  });
+  }
 
-document
-  .getElementById("formularioContato")
-  .addEventListener("submit", (evento) => {
+  cabecalho
+    .querySelectorAll("nav a")
+    .forEach((link) => {
+      link.addEventListener("click", () => {
+        cabecalho.classList.remove("cabecalho--aberto");
+      });
+    });
+}
+
+const formContato = document.getElementById("formularioContato");
+if (formContato) {
+  formContato.addEventListener("submit", (evento) => {
     evento.preventDefault();
 
     const campos = Object.fromEntries(
@@ -388,4 +412,126 @@ document
 
     evento.target.reset();
   });
+}
+
+// --- Lógica Carrossel de Artigos ---
+const janelaArtigos = document.querySelector(".artigos__janela");
+const faixaArtigos = document.getElementById("listaArtigos");
+const controleAnteriorArtigo = document.querySelector(".artigos__controle--anterior");
+const controleProximoArtigo = document.querySelector(".artigos__controle--proximo");
+const carrosselArtigos = document.querySelector(".artigos__carrossel");
+
+if (janelaArtigos && faixaArtigos && carrosselArtigos) {
+  const artigosOriginais = Array.from(faixaArtigos.children);
+
+  artigosOriginais.forEach((cartao) => {
+    const copia = cartao.cloneNode(true);
+    copia.setAttribute("aria-hidden", "true");
+    copia.classList.remove("revelar", "visivel");
+    copia.style.removeProperty("--atraso");
+    faixaArtigos.appendChild(copia);
+  });
+
+  let distanciaCicloArtigos = 0;
+
+  const medirCicloArtigos = () => {
+    const primeiraCopia = faixaArtigos.children[artigosOriginais.length];
+    if (!primeiraCopia || !faixaArtigos.firstElementChild) return;
+    distanciaCicloArtigos =
+      primeiraCopia.getBoundingClientRect().left -
+      faixaArtigos.firstElementChild.getBoundingClientRect().left;
+
+    if (janelaArtigos.scrollLeft >= distanciaCicloArtigos) {
+      janelaArtigos.scrollLeft %= distanciaCicloArtigos;
+    }
+  };
+
+  medirCicloArtigos();
+  window.addEventListener("resize", medirCicloArtigos);
+
+  janelaArtigos.classList.toggle("artigos__janela--automatico", !prefereMovimentoReduzido);
+
+  let animacaoArtigosId = null;
+
+  const moverCarrosselArtigos = (direcao) => {
+    const primeiroCartao = faixaArtigos.querySelector(".artigo");
+    if (!primeiroCartao) return;
+    const intervalo = Number.parseFloat(window.getComputedStyle(faixaArtigos).gap) || 0;
+    const movimento = primeiroCartao.getBoundingClientRect().width + intervalo;
+    let destino = janelaArtigos.scrollLeft + direcao * movimento;
+
+    if (destino < 0) {
+      janelaArtigos.scrollTo({ left: destino + distanciaCicloArtigos, behavior: "auto" });
+      destino = janelaArtigos.scrollLeft + direcao * movimento;
+    }
+
+    if (animacaoArtigosId) cancelAnimationFrame(animacaoArtigosId);
+
+    if (prefereMovimentoReduzido) {
+      janelaArtigos.scrollTo({ left: destino, behavior: "auto" });
+      if (janelaArtigos.scrollLeft >= distanciaCicloArtigos) {
+        janelaArtigos.scrollTo({ left: janelaArtigos.scrollLeft - distanciaCicloArtigos, behavior: "auto" });
+      }
+    } else {
+      const inicio = janelaArtigos.scrollLeft;
+      const distancia = destino - inicio;
+      const duracao = 1000; // transição leve de 1 segundo
+      const tempoInicio = performance.now();
+
+      const animar = (tempoAtual) => {
+        const progresso = Math.min((tempoAtual - tempoInicio) / duracao, 1);
+        // Easing mais suave (ease-in-out cubic)
+        const facilidade = progresso < 0.5 ? 4 * progresso * progresso * progresso : 1 - Math.pow(-2 * progresso + 2, 3) / 2;
+        
+        janelaArtigos.scrollLeft = inicio + distancia * facilidade;
+
+        if (progresso < 1) {
+          animacaoArtigosId = window.requestAnimationFrame(animar);
+        } else {
+          if (janelaArtigos.scrollLeft >= distanciaCicloArtigos) {
+            janelaArtigos.scrollTo({ left: janelaArtigos.scrollLeft - distanciaCicloArtigos, behavior: "auto" });
+          }
+        }
+      };
+      animacaoArtigosId = window.requestAnimationFrame(animar);
+    }
+  };
+
+  let intervaloArtigos;
+
+  const iniciarCarrosselArtigos = () => {
+    if (prefereMovimentoReduzido) return;
+    clearInterval(intervaloArtigos);
+    intervaloArtigos = setInterval(() => {
+      moverCarrosselArtigos(1);
+    }, 5000); // Espera 5 segundos parado
+  };
+
+  const pausarCarrosselArtigos = () => {
+    clearInterval(intervaloArtigos);
+  };
+
+  carrosselArtigos.addEventListener("mouseenter", pausarCarrosselArtigos);
+  carrosselArtigos.addEventListener("mouseleave", iniciarCarrosselArtigos);
+  carrosselArtigos.addEventListener("touchstart", pausarCarrosselArtigos, { passive: true });
+  carrosselArtigos.addEventListener("touchend", iniciarCarrosselArtigos, { passive: true });
+
+  if (controleAnteriorArtigo) {
+    controleAnteriorArtigo.addEventListener("click", () => {
+      moverCarrosselArtigos(-1);
+      pausarCarrosselArtigos();
+      setTimeout(iniciarCarrosselArtigos, 5000);
+    });
+  }
+
+  if (controleProximoArtigo) {
+    controleProximoArtigo.addEventListener("click", () => {
+      moverCarrosselArtigos(1);
+      pausarCarrosselArtigos();
+      setTimeout(iniciarCarrosselArtigos, 5000);
+    });
+  }
+
+  iniciarCarrosselArtigos();
+}
 

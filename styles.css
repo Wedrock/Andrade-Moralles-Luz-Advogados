@@ -825,10 +825,53 @@ em {
   color: var(--ardosia);
 }
 
-.artigos__grade {
+.artigos__carrossel {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 2.5rem minmax(0, 1fr) 2.5rem;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.artigos__controle {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  aspect-ratio: 1;
+  border: 1px solid var(--borda);
+  border-radius: 0.25rem;
+  color: var(--ardosia);
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, opacity 0.2s;
+}
+
+.artigos__controle:hover:not(:disabled) {
+  color: var(--ouro);
+  border-color: var(--ouro);
+}
+
+.artigos__janela {
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.artigos__janela::-webkit-scrollbar {
+  display: none;
+}
+
+.artigos__janela--automatico {
+  scroll-snap-type: none;
+}
+
+.artigos__grade {
+  display: flex;
   gap: 1.5rem;
+  width: max-content;
+  padding: 0.25rem 0 0.75rem;
 }
 
 .artigo {
@@ -838,6 +881,8 @@ em {
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 0 12px 32px -4px rgba(11, 15, 23, 0.06);
+  flex: 0 0 clamp(16rem, 25vw, 22rem);
+  scroll-snap-align: start;
 }
 
 .artigo__capa {
@@ -846,6 +891,43 @@ em {
   align-items: flex-end;
   aspect-ratio: 16 / 9;
   background: var(--obsidiana) center / cover;
+  transition: 0.3s;
+}
+
+.artigo__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 15, 23, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.artigo:hover .artigo__overlay {
+  opacity: 1;
+}
+
+.artigo__plus {
+  width: 3.5rem;
+  height: 3.5rem;
+  background: linear-gradient(135deg, #d4a373, #a0744b);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 300;
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 15px rgba(160, 116, 75, 0.4);
+}
+
+.artigo:hover .artigo__plus {
+  transform: scale(1);
 }
 
 .artigo__capa::before {
@@ -855,6 +937,7 @@ em {
   background: linear-gradient(to top,
       rgba(11, 15, 23, 0.85),
       transparent);
+  z-index: 0;
 }
 
 .artigo__capa span {
@@ -868,34 +951,66 @@ em {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  z-index: 2;
 }
 
 .artigo__corpo {
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 1.25rem;
+  padding: 1.5rem 1.25rem;
+  background: #fff;
 }
 
-.artigo__corpo small {
+.artigo__meta {
+  display: flex;
+  gap: 1rem;
   color: #94a3b8;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.artigo__meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.artigo__meta .material-symbols-outlined {
+  font-size: 0.95rem;
 }
 
 .artigo__corpo h3 {
   flex: 1;
-  margin: 0.5rem 0 1rem;
+  margin: 0 0 1.25rem;
   font-size: 1.15rem;
-  font-weight: 600;
+  font-weight: 700;
+  color: var(--carvao);
+  transition: color 0.3s ease;
 }
 
-.artigo__corpo a {
-  font-size: 0.8rem;
-  font-weight: 700;
+.artigo:hover .artigo__corpo h3 {
   color: var(--ouro);
 }
 
-.artigo__corpo a:hover {
-  text-decoration: underline;
+.artigo__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem;
+  background: #f1f5f9;
+  color: var(--carvao) !important;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 2rem;
+  align-self: flex-start;
+  text-decoration: none !important;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.artigo__btn:hover {
+  background: #e2e8f0;
 }
 
 .contato {
