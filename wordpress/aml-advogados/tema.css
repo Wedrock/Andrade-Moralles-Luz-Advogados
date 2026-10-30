@@ -1,0 +1,346 @@
+/*
+ * Estilos exclusivos do tema de WordPress. O visual principal vem de
+ * styles.css, o mesmo arquivo do site estático. Aqui ficam o texto dos
+ * artigos vindo do editor, a paginação e as páginas de consulta, que no site
+ * estático usavam estilos escritos direto no HTML.
+ */
+
+/* Texto só para leitores de tela (usado pelo WordPress na paginação). */
+.screen-reader-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* --- Artigo --- */
+
+.artigo-page {
+  background-color: #f9f9f9;
+}
+
+.artigo-header {
+  padding: clamp(6rem, 15vh, 8rem) 1.5rem 4rem;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  text-align: center;
+}
+
+.artigo-header__conteudo {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.artigo-header__selo {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  padding: 0.25rem 1rem;
+  background: var(--ouro-texto);
+  border-radius: 2rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.artigo-header h1 {
+  margin-bottom: 1.5rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.2;
+}
+
+.artigo-header__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+
+.artigo-header__meta > span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.artigo-header__meta .material-symbols-outlined {
+  font-size: 1.2rem;
+}
+
+.artigo-content {
+  padding: 4rem 1.5rem;
+  background: #fff;
+}
+
+.artigo-texto {
+  max-width: 800px;
+  margin: 0 auto;
+  color: #334155;
+}
+
+.artigo-texto p,
+.artigo-texto ul,
+.artigo-texto ol,
+.artigo-texto figure,
+.artigo-texto table {
+  margin-bottom: 1.5rem;
+}
+
+.artigo-texto h2 {
+  margin: 2.5rem 0 1.5rem;
+  font-size: 1.8rem;
+  color: #0f172a;
+}
+
+.artigo-texto h3 {
+  margin: 2.5rem 0 1rem;
+  font-size: 1.4rem;
+  color: var(--ouro-texto);
+}
+
+.artigo-texto ul,
+.artigo-texto ol {
+  padding-left: 1.5rem;
+}
+
+.artigo-texto ul {
+  list-style: disc;
+}
+
+.artigo-texto ol {
+  list-style: decimal;
+}
+
+.artigo-texto li {
+  margin-bottom: 0.5rem;
+}
+
+.artigo-texto blockquote {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: #f1f5f9;
+  border-left: 4px solid #94a3b8;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.artigo-texto blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.artigo-texto img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.artigo-texto table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.artigo-texto th,
+.artigo-texto td {
+  padding: 0.6rem;
+  border: 1px solid #e2e8f0;
+}
+
+/* --- Lista de artigos --- */
+
+.paginacao {
+  margin-top: 3rem;
+}
+
+.paginacao .nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.paginacao .page-numbers {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0 0.9rem;
+  background: #fff;
+  border: 1px solid var(--borda);
+  border-radius: 0.25rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.paginacao .page-numbers.current {
+  background: var(--obsidiana);
+  border-color: var(--obsidiana);
+  color: #fff;
+}
+
+.paginacao a.page-numbers:hover {
+  border-color: var(--ouro);
+}
+
+.lista-artigos__vazio {
+  text-align: center;
+  color: var(--ardosia);
+}
+
+/* --- Consulta processual --- */
+
+.consulta-page {
+  background-color: #0b0d12;
+}
+
+.consulta-cabecalho {
+  padding: clamp(3.25rem, 6vh, 5rem) 0 clamp(2.5rem, 5vh, 4rem);
+}
+
+.consulta-cabecalho .conteudo {
+  text-align: center;
+}
+
+.consulta-cabecalho .destaque__titulo {
+  margin: 0 auto 1rem;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+.migalhas {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #cbd5e1;
+}
+
+.migalhas a {
+  color: #fff;
+}
+
+.migalhas a:hover {
+  text-decoration: underline;
+}
+
+.migalhas [aria-current] {
+  color: #d4a373;
+}
+
+.tribunais {
+  padding: 5rem 0;
+  background-color: #fff;
+}
+
+.tribunais__grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+}
+
+.tribunal-cartao {
+  display: block;
+  padding: 2.5rem 1.5rem;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.tribunal-cartao:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+}
+
+.tribunal-cartao img {
+  display: block;
+  width: auto;
+  height: 65px;
+  margin: 0 auto 1rem;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.tribunal-cartao h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.tribunal-cartao p {
+  font-size: 0.8rem;
+}
+
+.tribunal-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 1.5rem;
+  background-color: #1a1a1a;
+  border-radius: 4px;
+  color: #fff;
+  transition: background-color 0.2s;
+}
+
+.tribunal-link:hover {
+  background-color: #2a2a2a;
+}
+
+.tribunal-link__icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background: linear-gradient(135deg, #d4a373, #a0744b);
+  border-radius: 4px;
+}
+
+.tribunal-link__icone .material-symbols-outlined {
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.tribunal-link h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.tribunais--embutido {
+  padding: 2rem 0;
+  background-color: #f9f9f9;
+}
+
+.tribunais--embutido .conteudo {
+  max-width: 1200px;
+}
+
+.tribunal-embutido {
+  display: block;
+  width: 100%;
+  height: 800px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Páginas comuns (conteúdo do editor) --- */
+
+.documento__conteudo h3 {
+  margin: 1.75rem 0 0.5rem;
+  font-size: 1.15rem;
+}
+
+.documento__conteudo ol {
+  padding-left: 1.25rem;
+  list-style: decimal;
+}
+
+.documento__conteudo img {
+  max-width: 100%;
+  height: auto;
+}
