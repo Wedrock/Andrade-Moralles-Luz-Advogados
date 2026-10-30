@@ -362,8 +362,8 @@ em {
 
 .abertura {
   display: grid;
-  grid-template-columns: 30% 1fr;
-  min-height: clamp(30rem, 72vh, 44rem);
+  grid-template-columns: clamp(12rem, 20%, 18rem) 1fr;
+  min-height: clamp(26rem, 64vh, 38rem);
   background: #0b0d12;
 }
 
@@ -376,7 +376,7 @@ em {
 }
 
 .abertura__banda img {
-  width: min(15rem, 70%);
+  width: min(9.5rem, 72%);
   height: auto;
 }
 
@@ -440,7 +440,7 @@ em {
 
 @media (max-width: 64rem) {
   .abertura {
-    grid-template-columns: 26% 1fr;
+    grid-template-columns: 9rem 1fr;
   }
 }
 
