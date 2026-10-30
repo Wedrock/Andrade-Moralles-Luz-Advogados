@@ -10,8 +10,8 @@
   --borda: #e2e8f0;
   --fundo-claro: #f8fafc;
 
-  --fonte-titulo: "Playfair Display", serif;
-  --fonte-texto: "Plus Jakarta Sans", sans-serif;
+  --fonte-titulo: "Poppins", sans-serif;
+  --fonte-texto: "Poppins", sans-serif;
 }
 
 * {
@@ -341,12 +341,10 @@ em {
   background-image: 
     linear-gradient(90deg, #0b0d12 28%, rgba(11, 13, 18, 0.88) 50%, rgba(11, 13, 18, 0.38) 72%, rgba(11, 13, 18, 0.78) 100%),
     linear-gradient(180deg, rgba(11, 13, 18, 0.75) 0%, transparent 18%, transparent 78%, #0b0d12 100%),
-    url("justica.webp");
+    url("colunas.webp");
   background-position: right 8% center;
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 0.5;
-  filter: contrast(1.1) brightness(0.92);
   pointer-events: none;
   z-index: 1;
 }
@@ -1466,8 +1464,7 @@ html.animacoes .revelar.visivel {
   }
 
   .destaque__imagem {
-    opacity: 0.28;
-    background-position: right 25% center;
+    background-position: center;
   }
 
   .destaque .conteudo {
@@ -1507,10 +1504,6 @@ html.animacoes .revelar.visivel {
     padding-bottom: 2.25rem;
   }
 
-  .destaque__imagem {
-    opacity: 0.18;
-    background-position: center;
-  }
 
   .destaque h1,
   .destaque__titulo {
