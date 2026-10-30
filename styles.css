@@ -522,8 +522,92 @@ em {
   background: #f9f9ff;
 }
 
-.historia .conteudo {
-  max-width: 52rem;
+.historia__grade {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4.5rem);
+}
+
+.historia__video {
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: var(--obsidiana);
+  border-radius: 1rem;
+  box-shadow: 0 20px 40px rgba(11, 15, 23, 0.18);
+}
+
+/* O vídeo institucional é vertical (YouTube Shorts). */
+.historia__video--tocando {
+  justify-self: center;
+  width: auto;
+  height: min(80vh, 40rem);
+  aspect-ratio: 9 / 16;
+}
+
+.historia__video-botao {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.historia__video-botao img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.historia__video-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  background: var(--ouro);
+  color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s;
+}
+
+.historia__video-play .material-symbols-outlined {
+  font-size: 2.5rem;
+}
+
+.historia__video-botao:hover .historia__video-play {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.historia__video iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (max-width: 64rem) {
+  .historia__grade {
+    grid-template-columns: 1fr;
+  }
+
+  .historia__video {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .historia__video--tocando {
+    width: auto;
+    height: min(75vh, 36rem);
+  }
 }
 
 .historia h2 {
