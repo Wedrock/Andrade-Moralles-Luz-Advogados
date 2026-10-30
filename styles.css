@@ -1560,7 +1560,10 @@ html.animacoes .revelar.visivel {
 
 /* Seções escuras mantêm o dourado claro. */
 .socios .ouro,
-.socios .etiqueta,
+.socios .etiqueta {
+  color: var(--ouro);
+}
+
 .areas .ouro,
 .areas .etiqueta,
 .sede .etiqueta,
