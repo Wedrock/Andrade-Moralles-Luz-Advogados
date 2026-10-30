@@ -4,8 +4,8 @@ const prefereMovimentoReduzido = window.matchMedia(
   "(prefers-reduced-motion: reduce)"
 ).matches;
 
-// Duplica os cartões para o carrossel infinito. As cópias ficam fora da
-// navegação por teclado e dos leitores de tela.
+// Duplica os cartões para o carrossel infinito. As cópias continuam
+// clicáveis com o mouse, mas ficam fora do Tab e dos leitores de tela.
 const duplicarCartoes = (faixa) => {
   const originais = Array.from(faixa.children);
 
@@ -13,7 +13,9 @@ const duplicarCartoes = (faixa) => {
     const copia = cartao.cloneNode(true);
 
     copia.setAttribute("aria-hidden", "true");
-    copia.setAttribute("inert", "");
+    copia.querySelectorAll("a, button").forEach((elemento) => {
+      elemento.setAttribute("tabindex", "-1");
+    });
 
     copia.classList.remove("revelar", "visivel");
     copia.style.removeProperty("--atraso");
