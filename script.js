@@ -475,11 +475,12 @@ document.querySelectorAll(".historia__video-botao").forEach((botao) => {
     video.title =
       "Vídeo institucional do escritório Andrade, Moralles & Luz Advogados";
     video.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+    // O YouTube recusa o player (erro 153) quando não sabe de qual site
+    // ele foi aberto, então o endereço do site é sempre enviado.
+    video.referrerPolicy = "strict-origin-when-cross-origin";
     video.allowFullscreen = true;
 
-    const caixa = botao.closest(".historia__video");
-    caixa.classList.add("historia__video--tocando");
-    caixa.replaceChildren(video);
+    botao.closest(".historia__video").replaceChildren(video);
     video.focus();
   });
 });
