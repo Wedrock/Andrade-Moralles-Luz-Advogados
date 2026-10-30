@@ -26,6 +26,61 @@ const duplicarCartoes = (faixa) => {
   return originais;
 };
 
+// O Safari nem sempre carrega imagens com loading="lazy" que entram na
+// tela pela rolagem horizontal do carrossel. Aqui o próprio script pede o
+// carregamento quando o cartão chega perto da área visível.
+const carregarImagensDoCarrossel = (janela) => {
+  const imagens = janela.querySelectorAll('img[loading="lazy"]');
+
+  if (!("IntersectionObserver" in window)) {
+    imagens.forEach((imagem) => {
+      imagem.loading = "eager";
+    });
+    return;
+  }
+
+  const observador = new IntersectionObserver(
+    (entradas, observer) => {
+      entradas.forEach((entrada) => {
+        if (entrada.isIntersecting) {
+          entrada.target.loading = "eager";
+          observer.unobserve(entrada.target);
+        }
+      });
+    },
+    { root: janela, rootMargin: "0px 100% 0px 100%" }
+  );
+
+  imagens.forEach((imagem) => observador.observe(imagem));
+};
+
+// Quando a rolagem para depois do fim dos cartões originais (inclusive
+// arrastando com o dedo), volta para o trecho equivalente do início, sem
+// salto visível, para o carrossel nunca chegar ao fim.
+const manterCicloInfinito = (janela, faixa, quantidade) => {
+  let espera;
+
+  janela.addEventListener(
+    "scroll",
+    () => {
+      clearTimeout(espera);
+
+      espera = setTimeout(() => {
+        const primeiraCopia = faixa.children[quantidade];
+        if (!primeiraCopia) return;
+
+        const ciclo =
+          primeiraCopia.offsetLeft - faixa.children[0].offsetLeft;
+
+        if (ciclo > 0 && janela.scrollLeft >= ciclo) {
+          janela.scrollLeft -= ciclo;
+        }
+      }, 150);
+    },
+    { passive: true }
+  );
+};
+
 const configurarBotaoPausa = (botao, aoAlternar) => {
   if (!botao) return;
 
@@ -75,12 +130,19 @@ if (janelaSocios && faixaSocios) {
       primeiraCopia.getBoundingClientRect().left -
       faixaSocios.firstElementChild.getBoundingClientRect().left;
 
-    if (janelaSocios.scrollLeft >= distanciaCicloSocios) {
+    if (
+      distanciaCicloSocios > 0 &&
+      janelaSocios.scrollLeft >= distanciaCicloSocios
+    ) {
       janelaSocios.scrollLeft %= distanciaCicloSocios;
     }
   };
 
   medirCicloSocios();
+  window.addEventListener("load", medirCicloSocios);
+
+  carregarImagensDoCarrossel(janelaSocios);
+  manterCicloInfinito(janelaSocios, faixaSocios, cartoesOriginais.length);
 
   janelaSocios.classList.toggle(
     "socios__janela--automatico",
@@ -141,7 +203,14 @@ if (janelaSocios && faixaSocios) {
     ) {
       janelaSocios.scrollLeft += intervalo * 0.07;
 
-      if (janelaSocios.scrollLeft >= distanciaCicloSocios) {
+      if (distanciaCicloSocios <= 0) {
+        medirCicloSocios();
+      }
+
+      if (
+        distanciaCicloSocios > 0 &&
+        janelaSocios.scrollLeft >= distanciaCicloSocios
+      ) {
         janelaSocios.scrollLeft -= distanciaCicloSocios;
       }
     }
@@ -414,13 +483,17 @@ if (janelaArtigos && faixaArtigos && carrosselArtigos) {
       primeiraCopia.getBoundingClientRect().left -
       faixaArtigos.firstElementChild.getBoundingClientRect().left;
 
-    if (janelaArtigos.scrollLeft >= distanciaCicloArtigos) {
+    if (distanciaCicloArtigos > 0 && janelaArtigos.scrollLeft >= distanciaCicloArtigos) {
       janelaArtigos.scrollLeft %= distanciaCicloArtigos;
     }
   };
 
   medirCicloArtigos();
   window.addEventListener("resize", medirCicloArtigos);
+  window.addEventListener("load", medirCicloArtigos);
+
+  carregarImagensDoCarrossel(janelaArtigos);
+  manterCicloInfinito(janelaArtigos, faixaArtigos, artigosOriginais.length);
 
   janelaArtigos.classList.toggle("artigos__janela--automatico", !prefereMovimentoReduzido);
 
