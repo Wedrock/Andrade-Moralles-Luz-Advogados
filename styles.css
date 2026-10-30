@@ -1194,10 +1194,6 @@ em {
   color: #94a3b8;
 }
 
-.historia p {
-  text-align: justify;
-}
-
 @keyframes surgir {
   from {
     opacity: 0;
