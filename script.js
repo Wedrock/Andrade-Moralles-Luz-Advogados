@@ -435,8 +435,11 @@ if (formContato) {
       `E-mail: ${campos.email}\n\n` +
       `${campos.mensagem}`;
 
+    // No tema de WordPress o número vem das opções do tema, no próprio formulário.
+    const numero = evento.target.dataset.whatsapp || numeroWhatsapp;
+
     window.open(
-      `https://api.whatsapp.com/send?phone=${numeroWhatsapp}` +
+      `https://api.whatsapp.com/send?phone=${numero}` +
       `&text=${encodeURIComponent(texto)}`,
       "_blank",
       "noopener"

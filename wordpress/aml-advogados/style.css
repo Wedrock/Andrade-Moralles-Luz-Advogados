@@ -1,0 +1,17 @@
+/*
+Theme Name: AML Advogados
+Theme URI: https://andrademoralleseluz.adv.br/
+Author: Andrade, Moralles & Luz Advogados
+Description: Tema do site do escritório Andrade, Moralles & Luz Advogados (Natal – RN). Visual igual ao site estático, com artigos, páginas de consulta processual e política de privacidade gerenciados pelo WordPress.
+Version: 1.0.0
+Requires at least: 6.2
+Requires PHP: 7.4
+License: Todos os direitos reservados
+Text Domain: aml-advogados
+*/
+
+/*
+ * Os estilos do site ficam em styles.css (o mesmo arquivo do site estático,
+ * copiado pelo script wordpress/gerar-tema.sh) e em tema.css (só o que é
+ * exclusivo do WordPress). Este arquivo serve apenas para identificar o tema.
+ */
