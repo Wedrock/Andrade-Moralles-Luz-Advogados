@@ -463,6 +463,27 @@ document.querySelectorAll(".sede__mapa-botao").forEach((botao) => {
   });
 });
 
+// O vídeo institucional só carrega o player do YouTube quando o visitante
+// clica no play. Até lá a página mostra apenas a imagem de capa.
+document.querySelectorAll(".historia__video-botao").forEach((botao) => {
+  botao.addEventListener("click", () => {
+    const video = document.createElement("iframe");
+
+    video.src =
+      `https://www.youtube-nocookie.com/embed/${botao.dataset.video}` +
+      "?autoplay=1&rel=0";
+    video.title =
+      "Vídeo institucional do escritório Andrade, Moralles & Luz Advogados";
+    video.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+    video.allowFullscreen = true;
+
+    const caixa = botao.closest(".historia__video");
+    caixa.classList.add("historia__video--tocando");
+    caixa.replaceChildren(video);
+    video.focus();
+  });
+});
+
 // --- Lógica Carrossel de Artigos ---
 const janelaArtigos = document.querySelector(".artigos__janela");
 const faixaArtigos = document.getElementById("listaArtigos");
