@@ -537,14 +537,6 @@ em {
   box-shadow: 0 20px 40px rgba(11, 15, 23, 0.18);
 }
 
-/* O vídeo institucional é vertical (YouTube Shorts). */
-.historia__video--tocando {
-  justify-self: center;
-  width: auto;
-  height: min(80vh, 40rem);
-  aspect-ratio: 9 / 16;
-}
-
 .historia__video-botao {
   position: relative;
   display: block;
@@ -602,11 +594,6 @@ em {
   .historia__video {
     width: 100%;
     max-width: 36rem;
-  }
-
-  .historia__video--tocando {
-    width: auto;
-    height: min(75vh, 36rem);
   }
 }
 
