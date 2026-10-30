@@ -3,6 +3,8 @@
   --carvao: #11141a;
   --ouro: #b08d43;
   --ouro-claro: #e9c176;
+  /* Dourado para texto sobre fundo claro (contraste mínimo de 4,5:1). */
+  --ouro-texto: #86662a;
   --bronze: #b98e59;
   --ardosia: #475569;
   --borda: #e2e8f0;
@@ -87,7 +89,7 @@ em {
 }
 
 .ouro {
-  color: var(--ouro);
+  color: var(--ouro-texto);
 }
 
 .etiqueta {
@@ -96,7 +98,7 @@ em {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ouro);
+  color: var(--ouro-texto);
   margin-bottom: 0.5rem;
 }
 
@@ -303,6 +305,8 @@ em {
 
 .cabecalho__sociais a {
   display: inline-flex;
+  min-width: 2rem;
+  min-height: 2rem;
   align-items: center;
   justify-content: center;
   color: #94a3b8;
@@ -337,7 +341,7 @@ em {
   background-image: 
     linear-gradient(90deg, #0b0d12 28%, rgba(11, 13, 18, 0.88) 50%, rgba(11, 13, 18, 0.38) 72%, rgba(11, 13, 18, 0.78) 100%),
     linear-gradient(180deg, rgba(11, 13, 18, 0.75) 0%, transparent 18%, transparent 78%, #0b0d12 100%),
-    url("justica.png");
+    url("justica.webp");
   background-position: right 8% center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -536,7 +540,7 @@ em {
 }
 
 .historia h2 em {
-  color: var(--ouro);
+  color: var(--ouro-texto);
 }
 
 .historia p {
@@ -593,7 +597,7 @@ em {
 .numeros__lista strong {
   display: block;
   font: 700 2.5rem/1.1 var(--fonte-texto);
-  color: var(--ouro);
+  color: var(--ouro-texto);
 }
 
 .numeros__lista span {
@@ -767,6 +771,7 @@ em {
 
 .socio img {
   width: 100%;
+  height: auto;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   object-position: top;
@@ -887,6 +892,8 @@ em {
 
 .artigo__capa {
   position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: flex;
   align-items: flex-end;
   aspect-ratio: 16 / 9;
@@ -965,7 +972,7 @@ em {
 .artigo__meta {
   display: flex;
   gap: 1rem;
-  color: #94a3b8;
+  color: #64748b;
   font-size: 0.75rem;
   font-weight: 500;
   margin-bottom: 0.75rem;
@@ -991,7 +998,7 @@ em {
 }
 
 .artigo:hover .artigo__corpo h3 {
-  color: var(--ouro);
+  color: var(--ouro-texto);
 }
 
 .artigo__btn {
@@ -1167,8 +1174,10 @@ em {
   margin-bottom: 1rem;
 }
 
-.rodape h4 {
+.rodape h2 {
   margin-bottom: 1rem;
+  font-family: var(--fonte-texto);
+  font-weight: 700;
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1193,7 +1202,7 @@ em {
   padding-top: 1.5rem;
   padding-bottom: calc(2rem + env(safe-area-inset-bottom));
   font-size: 0.65rem;
-  color: #64748b;
+  color: #94a3b8;
 }
 
 .historia p {
@@ -1529,4 +1538,406 @@ html.animacoes .revelar.visivel {
   transform: translateY(-4px) scale(1.03) !important;
   filter: brightness(1.1);
   box-shadow: 0 8px 20px rgba(212, 163, 115, 0.4);
+}
+/* --- Acessibilidade --- */
+
+.pular-conteudo {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 10000;
+  padding: 0.75rem 1rem;
+  background: #fff;
+  color: var(--obsidiana);
+  font-weight: 700;
+  border-radius: 0.25rem;
+  transform: translateY(-200%);
+}
+
+.pular-conteudo:focus {
+  transform: none;
+}
+
+.visualmente-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ouro);
+  outline-offset: 3px;
+}
+
+/* Seções escuras mantêm o dourado claro. */
+.socios .ouro,
+.socios .etiqueta,
+.areas .ouro,
+.areas .etiqueta,
+.sede .etiqueta,
+.rodape .ouro {
+  color: var(--ouro-claro);
+}
+
+.carrossel__pausa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 1.25rem auto 0;
+  background: transparent;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.carrossel__pausa:hover {
+  opacity: 1;
+}
+
+/* --- Página inicial --- */
+
+.artigo__capa img {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.artigo__corpo h3 a {
+  color: inherit;
+}
+
+.artigos__mais {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.artigos__mais .botao {
+  gap: 0.5rem;
+}
+
+.portfolio {
+  padding: 6rem 0;
+  background: #fff;
+}
+
+.portfolio .secao__cabecalho p {
+  color: var(--ardosia);
+}
+
+.portfolio__grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.portfolio__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 12.5rem;
+  padding: 2rem;
+  background: #f1f5f9;
+  border-radius: 0.5rem;
+}
+
+.portfolio__item img {
+  max-width: 100%;
+  max-height: 9.5rem;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.formulario__aviso {
+  font-size: 0.75rem;
+  color: var(--ardosia);
+}
+
+.formulario__aviso a,
+.documento a,
+.consulta a,
+.artigo-aviso a {
+  color: var(--ouro-texto);
+  text-decoration: underline;
+}
+
+.sede a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.sede__mapa-espaco {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  height: 14rem;
+  margin-top: 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 0.25rem;
+}
+
+.sede__mapa-espaco .sede__mapa {
+  height: 100%;
+  margin-top: 0;
+}
+
+.sede__mapa-botao {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0 1.25rem;
+  background: var(--ouro);
+  color: var(--obsidiana);
+  border: 0;
+  border-radius: 0.25rem;
+  font: 700 0.8rem var(--fonte-texto);
+  cursor: pointer;
+}
+
+.sede__mapa-link {
+  font-size: 0.8rem;
+  color: #cbd5e1;
+}
+
+/* --- Artigos --- */
+
+.artigo-aviso {
+  margin-top: 2.5rem;
+  padding: 1.25rem 1.5rem;
+  background: #f8fafc;
+  border-left: 4px solid var(--ouro);
+  border-radius: 0.25rem;
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+.artigo-aviso p + p {
+  margin-top: 0.75rem;
+}
+
+.lista-artigos {
+  padding: clamp(6rem, 15vh, 8rem) 1.25rem 4rem;
+  background: var(--fundo-claro);
+}
+
+.lista-artigos__conteudo {
+  max-width: 75rem;
+  margin: 0 auto;
+}
+
+.lista-artigos__cabecalho {
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.lista-artigos__cabecalho h1 {
+  margin-bottom: 1rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #0f172a;
+}
+
+.lista-artigos__cabecalho p {
+  max-width: 37.5rem;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  color: var(--ardosia);
+}
+
+.lista-artigos__selo,
+.lista-artigos__data {
+  display: inline-block;
+  padding: 0.25rem 0.85rem;
+  background: #f3ead8;
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b5120;
+}
+
+.lista-artigos__selo {
+  margin-bottom: 1rem;
+}
+
+.lista-artigos__grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(18.75rem, 100%), 1fr));
+  gap: 2rem;
+}
+
+.lista-artigos__item a {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.lista-artigos__item a:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.lista-artigos__item img {
+  width: 100%;
+  height: 12.5rem;
+  object-fit: cover;
+}
+
+.lista-artigos__corpo {
+  padding: 1.5rem;
+}
+
+.lista-artigos__data {
+  margin-bottom: 1rem;
+}
+
+.lista-artigos__corpo h2 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  color: #0f172a;
+}
+
+.lista-artigos__corpo p {
+  font-size: 0.9rem;
+  color: var(--ardosia);
+}
+
+/* --- Consulta processual --- */
+
+.consulta {
+  display: flex;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.consulta__secao {
+  width: 100%;
+  padding: 4rem 0;
+}
+
+.consulta__conteudo {
+  max-width: 56rem;
+  text-align: center;
+}
+
+.consulta h1 {
+  margin-bottom: 1rem;
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  color: #111;
+}
+
+.consulta__conteudo > p {
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  color: var(--ardosia);
+}
+
+.consulta__estados {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+.consulta .consulta__estado {
+  display: block;
+  min-width: min(16rem, 100%);
+  padding: 1.25rem;
+  background: linear-gradient(135deg, #8a6a2a, #6b5120);
+  color: #fff;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.consulta__estado:hover {
+  transform: translateY(-2px);
+}
+
+.consulta .consulta__outros {
+  margin-bottom: 0;
+  font-size: 0.9rem;
+}
+
+/* --- Documentos (política de privacidade, erro 404) --- */
+
+.documento {
+  padding: clamp(6rem, 15vh, 8rem) 0 4rem;
+  background: #fff;
+}
+
+.documento__conteudo {
+  max-width: 48rem;
+  color: #1f2937;
+  line-height: 1.7;
+}
+
+.documento h1 {
+  margin-bottom: 0.5rem;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+}
+
+.documento h2 {
+  margin: 2.25rem 0 0.75rem;
+  font-size: 1.35rem;
+}
+
+.documento p,
+.documento li {
+  margin-bottom: 0.9rem;
+}
+
+.documento ul {
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+.documento__data,
+.documento__codigo {
+  font-size: 0.85rem;
+  color: var(--ardosia);
+}
+
+.documento--erro {
+  min-height: 70vh;
+  text-align: center;
+}
+
+.documento .botao {
+  color: #fff;
+  text-decoration: none;
+}
+
+.rodape__base a {
+  text-decoration: underline;
+}
+
+.rodape__base a:hover {
+  color: #fff;
+}
+
+.artigo-content a {
+  text-decoration: underline;
+  overflow-wrap: anywhere;
 }

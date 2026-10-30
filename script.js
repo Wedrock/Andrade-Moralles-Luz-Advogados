@@ -1,111 +1,51 @@
 const numeroWhatsapp = "5584987357317";
 
-const modelos = {
-  pilares: (item) => `
-    <article class="pilar ${item.escuro ? "pilar--escuro" : ""}">
-      <span class="pilar__icone material-symbols-outlined">
-        ${item.icone}
-      </span>
+const prefereMovimentoReduzido = window.matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;
 
-      <div>
-        <h3>${item.titulo}</h3>
-        <p>${item.texto}</p>
-      </div>
-    </article>
-  `,
+// Duplica os cartões para o carrossel infinito. As cópias ficam fora da
+// navegação por teclado e dos leitores de tela.
+const duplicarCartoes = (faixa) => {
+  const originais = Array.from(faixa.children);
 
-  areas: (item) => `
-    <article class="cartao-area">
-      <span class="cartao-area__icone material-symbols-outlined">
-        ${item.icone}
-      </span>
+  originais.forEach((cartao) => {
+    const copia = cartao.cloneNode(true);
 
-      <h3>${item.titulo}</h3>
-      <p>${item.texto}</p>
+    copia.setAttribute("aria-hidden", "true");
+    copia.setAttribute("inert", "");
 
-      <a href="#contato">
-        ${item.rotulo}
-        <span class="material-symbols-outlined">chevron_right</span>
-      </a>
-    </article>
-  `,
+    copia.classList.remove("revelar", "visivel");
+    copia.style.removeProperty("--atraso");
 
-  socios: (item) => `
-    <article class="socio">
-      <img
-        src="${item.foto}"
-        alt="${item.nome}"
-        loading="lazy"
-      >
+    faixa.appendChild(copia);
+  });
 
-      <div class="socio__cartao">
-        <h3>${item.nome}</h3>
-        <span>${item.cargo}</span>
-
-        <div>
-          <a href="tel:${item.numero.slice(2)}">
-            <span class="material-symbols-outlined">call</span>
-            ${item.telefone}
-          </a>
-
-          <a
-            href="https://api.whatsapp.com/send?phone=${item.numero}"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="WhatsApp de ${item.nome}"
-          >
-            <span class="material-symbols-outlined">chat</span>
-          </a>
-        </div>
-      </div>
-    </article>
-  `,
-
-  artigos: (item) => `
-    <article class="artigo">
-      <a
-        href="${item.link}"
-        class="artigo__capa"
-        style="background-image: url('${item.capa}'); text-decoration: none;"
-      >
-        <div class="artigo__overlay">
-          <div class="artigo__plus">+</div>
-        </div>
-        <span>Leia no blog</span>
-      </a>
-
-      <div class="artigo__corpo">
-        <div class="artigo__meta">
-          <span><span class="material-symbols-outlined">calendar_today</span> ${item.data}</span>
-          <span><span class="material-symbols-outlined">person</span> ${item.autor}</span>
-        </div>
-        <h3><a href="${item.link}" style="color: inherit; text-decoration: none;">${item.titulo}</a></h3>
-        <a class="artigo__btn" href="${item.link}">Leia mais</a>
-      </div>
-    </article>
-  `
+  return originais;
 };
 
-const destinos = {
-  pilares: "pilares",
-  areas: "listaAreas",
-  socios: "listaSocios",
-  artigos: "listaArtigos"
-};
+const configurarBotaoPausa = (botao, aoAlternar) => {
+  if (!botao) return;
 
-const listas = {
-  pilares,
-  areas: areasDeAtuacao,
-  socios,
-  artigos
-};
-
-for (const nome in destinos) {
-  const el = document.getElementById(destinos[nome]);
-  if (el && listas[nome]) {
-    el.innerHTML = listas[nome].map(modelos[nome]).join("");
+  if (prefereMovimentoReduzido) {
+    botao.hidden = true;
+    return;
   }
-}
+
+  botao.addEventListener("click", () => {
+    const pausado = botao.getAttribute("aria-pressed") !== "true";
+
+    botao.setAttribute("aria-pressed", String(pausado));
+    botao.setAttribute(
+      "aria-label",
+      pausado ? botao.dataset.rotuloRetomar : botao.dataset.rotuloPausar
+    );
+    botao.querySelector(".material-symbols-outlined").textContent =
+      pausado ? "play_arrow" : "pause";
+
+    aoAlternar(pausado);
+  });
+};
 
 const janelaSocios = document.querySelector(".socios__janela");
 const faixaSocios = document.getElementById("listaSocios");
@@ -117,25 +57,11 @@ const controleProximo = document.querySelector(
 );
 const carrosselSocios = document.querySelector(".socios__carrossel");
 
-const prefereMovimentoReduzido = window.matchMedia(
-  "(prefers-reduced-motion: reduce)"
-).matches;
-
 if (janelaSocios && faixaSocios) {
-  const cartoesOriginais = Array.from(faixaSocios.children);
-
-  cartoesOriginais.forEach((cartao) => {
-    const copia = cartao.cloneNode(true);
-
-    copia.setAttribute("aria-hidden", "true");
-
-    copia.classList.remove("revelar", "visivel");
-    copia.style.removeProperty("--atraso");
-
-    faixaSocios.appendChild(copia);
-  });
+  const cartoesOriginais = duplicarCartoes(faixaSocios);
 
   let distanciaCicloSocios = 0;
+  let sociosPausadoPeloUsuario = false;
 
   const medirCicloSocios = () => {
     const primeiraCopia =
@@ -205,6 +131,7 @@ if (janelaSocios && faixaSocios) {
 
     if (
       !document.hidden &&
+      !sociosPausadoPeloUsuario &&
       carrosselSocios &&
       !carrosselSocios.matches(":hover") &&
       !carrosselSocios.contains(document.activeElement) &&
@@ -253,26 +180,35 @@ if (janelaSocios && faixaSocios) {
 
   window.addEventListener("resize", medirCicloSocios);
 
+  configurarBotaoPausa(
+    document.querySelector(".socios__pausa"),
+    (pausado) => {
+      sociosPausadoPeloUsuario = pausado;
+    }
+  );
+
   if (!prefereMovimentoReduzido) {
     window.requestAnimationFrame(animarCarrosselSocios);
   }
 }
 
 if ("IntersectionObserver" in window && !prefereMovimentoReduzido) {
+  const formatoNumero = new Intl.NumberFormat("pt-BR");
+
   const animarContagem = (numero) => {
     if (!numero || numero.dataset.contagemIniciada) {
       return;
     }
 
     const textoFinal = numero.textContent.trim();
-    const partes = textoFinal.match(/^([^\d]*)(\d+)(.*)$/);
+    const partes = textoFinal.match(/^([^\d]*)(\d[\d.]*)(.*)$/);
 
     if (!partes) {
       return;
     }
 
     const [, prefixo, digitos, sufixo] = partes;
-    const valorFinal = Number(digitos);
+    const valorFinal = Number(digitos.replace(/\./g, ""));
     const inicio = performance.now();
     const duracao = 1400;
 
@@ -291,7 +227,7 @@ if ("IntersectionObserver" in window && !prefereMovimentoReduzido) {
       numero.textContent =
         progresso === 1
           ? textoFinal
-          : `${prefixo}${valorAtual}${sufixo}`;
+          : `${prefixo}${formatoNumero.format(valorAtual)}${sufixo}`;
 
       if (progresso < 1) {
         window.requestAnimationFrame(atualizarContagem);
@@ -305,7 +241,7 @@ if ("IntersectionObserver" in window && !prefereMovimentoReduzido) {
     ".pilar, .historia .etiqueta, .historia h2, " +
     ".historia p, .historia .botao, .historia__fundadores, " +
     ".numeros__lista li, .secao__cabecalho, .cartao-area, " +
-    ".socio:not([aria-hidden='true']), .artigo, .formulario, .sede";
+    ".socio:not([aria-hidden='true']), .artigo:not([aria-hidden='true']), .formulario, .sede";
 
   const elementosAnimados =
     document.querySelectorAll(seletoresAnimados);
@@ -372,17 +308,42 @@ const cabecalho = document.querySelector(".cabecalho");
 
 if (cabecalho) {
   const botaoMenu = cabecalho.querySelector(".cabecalho__botao");
+
+  const definirMenuAberto = (aberto) => {
+    cabecalho.classList.toggle("cabecalho--aberto", aberto);
+
+    if (botaoMenu) {
+      botaoMenu.setAttribute("aria-expanded", String(aberto));
+      botaoMenu.setAttribute(
+        "aria-label",
+        aberto ? "Fechar menu" : "Abrir menu"
+      );
+    }
+  };
+
   if (botaoMenu) {
     botaoMenu.addEventListener("click", () => {
-      cabecalho.classList.toggle("cabecalho--aberto");
+      definirMenuAberto(
+        !cabecalho.classList.contains("cabecalho--aberto")
+      );
     });
   }
+
+  document.addEventListener("keydown", (evento) => {
+    if (
+      evento.key === "Escape" &&
+      cabecalho.classList.contains("cabecalho--aberto")
+    ) {
+      definirMenuAberto(false);
+      botaoMenu?.focus();
+    }
+  });
 
   cabecalho
     .querySelectorAll("nav a")
     .forEach((link) => {
       link.addEventListener("click", () => {
-        cabecalho.classList.remove("cabecalho--aberto");
+        definirMenuAberto(false);
       });
     });
 }
@@ -414,6 +375,23 @@ if (formContato) {
   });
 }
 
+// O mapa do Google só é carregado quando o visitante pede, o que evita
+// cerca de 1,5 MB de scripts e o envio de dados ao Google sem necessidade.
+document.querySelectorAll(".sede__mapa-botao").forEach((botao) => {
+  botao.addEventListener("click", () => {
+    const mapa = document.createElement("iframe");
+
+    mapa.className = "sede__mapa";
+    mapa.src = botao.dataset.src;
+    mapa.title = botao.dataset.titulo;
+    mapa.referrerPolicy = "no-referrer-when-downgrade";
+    mapa.allowFullscreen = true;
+
+    botao.closest(".sede__mapa-espaco").replaceChildren(mapa);
+    mapa.focus();
+  });
+});
+
 // --- Lógica Carrossel de Artigos ---
 const janelaArtigos = document.querySelector(".artigos__janela");
 const faixaArtigos = document.getElementById("listaArtigos");
@@ -422,17 +400,10 @@ const controleProximoArtigo = document.querySelector(".artigos__controle--proxim
 const carrosselArtigos = document.querySelector(".artigos__carrossel");
 
 if (janelaArtigos && faixaArtigos && carrosselArtigos) {
-  const artigosOriginais = Array.from(faixaArtigos.children);
-
-  artigosOriginais.forEach((cartao) => {
-    const copia = cartao.cloneNode(true);
-    copia.setAttribute("aria-hidden", "true");
-    copia.classList.remove("revelar", "visivel");
-    copia.style.removeProperty("--atraso");
-    faixaArtigos.appendChild(copia);
-  });
+  const artigosOriginais = duplicarCartoes(faixaArtigos);
 
   let distanciaCicloArtigos = 0;
+  let artigosPausadoPeloUsuario = false;
 
   const medirCicloArtigos = () => {
     const primeiraCopia = faixaArtigos.children[artigosOriginais.length];
@@ -482,7 +453,7 @@ if (janelaArtigos && faixaArtigos && carrosselArtigos) {
         const progresso = Math.min((tempoAtual - tempoInicio) / duracao, 1);
         // Easing mais suave (ease-in-out cubic)
         const facilidade = progresso < 0.5 ? 4 * progresso * progresso * progresso : 1 - Math.pow(-2 * progresso + 2, 3) / 2;
-        
+
         janelaArtigos.scrollLeft = inicio + distancia * facilidade;
 
         if (progresso < 1) {
@@ -500,7 +471,7 @@ if (janelaArtigos && faixaArtigos && carrosselArtigos) {
   let intervaloArtigos;
 
   const iniciarCarrosselArtigos = () => {
-    if (prefereMovimentoReduzido) return;
+    if (prefereMovimentoReduzido || artigosPausadoPeloUsuario) return;
     clearInterval(intervaloArtigos);
     intervaloArtigos = setInterval(() => {
       moverCarrosselArtigos(1);
@@ -513,6 +484,8 @@ if (janelaArtigos && faixaArtigos && carrosselArtigos) {
 
   carrosselArtigos.addEventListener("mouseenter", pausarCarrosselArtigos);
   carrosselArtigos.addEventListener("mouseleave", iniciarCarrosselArtigos);
+  carrosselArtigos.addEventListener("focusin", pausarCarrosselArtigos);
+  carrosselArtigos.addEventListener("focusout", iniciarCarrosselArtigos);
   carrosselArtigos.addEventListener("touchstart", pausarCarrosselArtigos, { passive: true });
   carrosselArtigos.addEventListener("touchend", iniciarCarrosselArtigos, { passive: true });
 
@@ -532,6 +505,18 @@ if (janelaArtigos && faixaArtigos && carrosselArtigos) {
     });
   }
 
+  configurarBotaoPausa(
+    document.querySelector(".artigos__pausa"),
+    (pausado) => {
+      artigosPausadoPeloUsuario = pausado;
+
+      if (pausado) {
+        pausarCarrosselArtigos();
+      } else {
+        iniciarCarrosselArtigos();
+      }
+    }
+  );
+
   iniciarCarrosselArtigos();
 }
-
