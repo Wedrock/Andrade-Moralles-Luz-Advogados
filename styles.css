@@ -964,7 +964,7 @@ em {
 .artigo__meta {
   display: flex;
   gap: 1rem;
-  color: #64748b;
+  color: #94a3b8;
   font-size: 0.75rem;
   font-weight: 500;
   margin-bottom: 0.75rem;
@@ -990,7 +990,7 @@ em {
 }
 
 .artigo:hover .artigo__corpo h3 {
-  color: var(--ouro-texto);
+  color: var(--ouro);
 }
 
 .artigo__btn {
@@ -1552,7 +1552,8 @@ html.animacoes .revelar.visivel {
 
 /* Seções escuras mantêm o dourado claro. */
 .socios .ouro,
-.socios .etiqueta {
+.socios .etiqueta,
+.artigos .ouro {
   color: var(--ouro);
 }
 
@@ -1598,7 +1599,7 @@ html.animacoes .revelar.visivel {
 }
 
 .artigos__mais {
-  margin-top: 2.5rem;
+  margin-top: 3rem;
   text-align: center;
 }
 
