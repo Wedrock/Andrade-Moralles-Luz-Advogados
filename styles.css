@@ -361,35 +361,22 @@ em {
 /* --- Abertura da página inicial (segue o topo do site original) --- */
 
 .abertura {
-  display: grid;
-  grid-template-columns: clamp(12rem, 20%, 18rem) 1fr;
-  min-height: clamp(26rem, 64vh, 38rem);
-  background: #0b0d12;
-}
-
-.abertura__banda {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: clamp(2.5rem, 7vh, 4.5rem);
-  background: url("banda.webp") center bottom / cover;
-}
-
-.abertura__banda img {
-  width: min(9.5rem, 72%);
-  height: auto;
+  align-items: center;
+  min-height: clamp(26rem, 64vh, 38rem);
+  background:
+    linear-gradient(90deg, rgba(11, 13, 18, 0.82) 0%, rgba(11, 13, 18, 0.6) 55%, rgba(11, 13, 18, 0.45) 100%),
+    url("colunas.webp") center / cover;
+  background-color: #0b0d12;
+  color: #fff;
 }
 
 .abertura__conteudo {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: flex-start;
-  padding: clamp(3rem, 8vh, 5rem) clamp(1.5rem, 7vw, 7rem);
-  background:
-    linear-gradient(rgba(11, 13, 18, 0.62), rgba(11, 13, 18, 0.62)),
-    url("colunas.webp") center / cover;
-  color: #fff;
+  padding-top: clamp(3rem, 8vh, 5rem);
+  padding-bottom: clamp(3rem, 8vh, 5rem);
 }
 
 .abertura h1 {
@@ -438,25 +425,9 @@ em {
   color: var(--obsidiana);
 }
 
-@media (max-width: 64rem) {
-  .abertura {
-    grid-template-columns: 9rem 1fr;
-  }
-}
-
 @media (max-width: 43rem) {
   .abertura {
-    grid-template-columns: 1fr;
     min-height: 0;
-  }
-
-  .abertura__banda {
-    display: none;
-  }
-
-  .abertura__conteudo {
-    padding: 3.5rem 1.25rem 3.75rem;
-    border-top: 6px solid var(--bronze);
   }
 
   .abertura h1 {
